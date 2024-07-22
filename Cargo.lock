@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "CPUEmulator_Rust"
+name = "cpuemulator_rust"
 version = "0.1.0"

@@ -1,1 +1,1 @@
-# CPUEmulator_Rust
+# cpuemulator_rust
