@@ -65,8 +65,8 @@ impl CpuEmulator {
                 Opecode::AddA => self.add_a(im),
                 Opecode::AddB => self.add_b(im),
                 Opecode::MovA2B => self.mov_a2b(),
-                Opecode::
-                Opecode::
+                Opecode::MovB2A => self.mov_b2a(),
+                Opecode::Jmp => self.jmp();
                 Opecode::
                 Opecode::
                 Opecode::
@@ -85,9 +85,20 @@ impl CpuEmulator {
         self.register.set_carry_flag(0);
     }
 
+    fn mov_b(&mut self, im: u8) {
+        self.register.setregister_b(im);
+        self.register.set_carry_flag(0);
+    }
+
     fn mov_a2b(&mut self) {
         
     }
+
+    fn mov_b2a(&mut self) {
+        
+    }
+
+    fn 
 
 
 
