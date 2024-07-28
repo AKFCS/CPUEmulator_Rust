@@ -38,7 +38,7 @@ impl Register {
         self.carry_flag
     }
 
-    pub fn sef_carry_flag(&mut self, new_value: u8) -> u8 {
+    pub fn sef_carry_flag(&mut self, new_value: u8) {
         self.carry_flag = new_value;
     }
 

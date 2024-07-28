@@ -91,14 +91,74 @@ impl CpuEmulator {
     }
 
     fn mov_a2b(&mut self) {
-        
+        let register_b = self.register.register_b();
+        self.register.set_register_a(new_value:register_b);
+        self.register.carry_flag(new_value:0);
     }
 
     fn mov_b2a(&mut self) {
-        
+        let register_a = self.register.register_a();
+        self.register.set_register_b(new_value: register_a);
+        self.register.set_carry_flag(new_value:0);
     }
 
-    fn 
+    fn add_a(&mut self, im; u8) {
+        let existence = self.register.register_a();
+        let new_value = existence + im;
+
+        if new_value > 0x0f {
+            self.register.set_carry_flag(1);
+        }
+
+        self.register.set_register_a(new_value & 0x0f);
+    }
+
+    fn jmp(&mut self, im: u8) {
+        self.register.set_pc(im);
+        self.register.set_carry_flag(0);
+    }
+
+    fn jnc(&mut self, im:u8) {
+        self.register.carry_flag() == 0 { 
+            self.register.set_pc(im);
+        }
+        self.register.set_carry_flag(0);
+    }
+
+    fn in_a(&mut self) {
+        let input_port = self.port.input();
+        self.register.set_register_a(input_port);
+        self.register.set_carry_flag(0);
+    }
+
+    fn in_b(&mut self) {
+        let input_port = self.port.input();
+        self.register.set_register_b(input_port);
+        self.register.set_carry_flag(0);
+    }
+
+    fn out_b(&mut self) {
+        let register_b = self.register.register_b();
+        self.port.set_output(register_b);
+        self.register.set_carry_flag(0);
+        println!("Port (B) Out: {}", sefl.port.output()); 
+    }
+    
+    fn out_im(&mut self, im: u8) {
+        self.port.set_output(im);
+        self.port.set_carry_flag(0);
+        println!("Port Out: {}", self.port.output());
+    }
+
+    
+    
+
+
+
+
+
+
+ 
 
 
 

@@ -1,3 +1,6 @@
+
+
+#[derive(Default)]
 pub struct Rom {
     pub memory_array: Vec<u8>,
 }
@@ -13,5 +16,13 @@ impl Rom {
 
     pub fn size(&self) -> u8 {
         self.memory_array.len() as u8
+    }
+}
+
+impl Default for Rom {
+    fn default() -> Self {
+        Self {
+            memory_array: [],
+        }
     }
 }
