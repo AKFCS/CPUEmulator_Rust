@@ -1,5 +1,5 @@
 use crate::error::EmulatorErr;
-use crate::op::Opecode;
+use crate::op::Opcode;
 use crate::port::Port;
 use crate::register::Register;
 use crate::rom::Rom;
@@ -32,21 +32,21 @@ impl CpuEmulator {
         self.rom.read(pc) 
     }
 
-    fn decode(&self, data: u8) -> Result<(Opecode, u8), EmulatorErr> {
+    fn decode(&self, data: u8) -> Result<(Opcode, u8), EmulatorErr> {
         let op = data >> 4;
         let im = data & 0x0f;
 
         if let Some(opecode) = FromPrimitive::from_u8(op) {
             match opecode {
-                Opecode::AddA
-                |Opecode::AddB
-                |Opecode::MovA
-                |Opecode::MovB
-                |Opecode::MovA2B
-                |Opecode::Jmp
-                |Opecode::Jnc
-                |Opecode::OutIm => Ok(opecode, im),
-                Opecode::InA | Opecode::InB | Opecode::OutB => Ok((opecode,0)),
+                Opcode::AddA
+                |Opcode::AddB
+                |Opcode::MovA
+                |Opcode::MovB
+                |Opcode::MovA2B
+                |Opcode::Jmp
+                |Opcode::Jnc
+                |Opcode::OutIm => Ok(opecode, im),
+                Opcode::InA | Opcode::InB | Opcode::OutB => Ok((opecode,0)),
             }
         }
         else {
@@ -60,14 +60,14 @@ impl CpuEmulator {
             let(opecode, im) = self.decode(data)?;
 
             match  opecode {
-                Opecode::MovA => self.mov_a(im),
-                Opecode::MovB => self.mov_b(im),
-                Opecode::AddA => self.add_a(im),
-                Opecode::AddB => self.add_b(im),
-                Opecode::MovA2B => self.mov_a2b(),
-                Opecode::MovB2A => self.mov_b2a(),
-                Opecode::Jmp => self.jmp();
-                Opecode::
+                Opcode::MovA => self.mov_a(im),
+                Opcode::MovB => self.mov_b(im),
+                Opcode::AddA => self.add_a(im),
+                Opcode::AddB => self.add_b(im),
+                Opcode::MovA2B => self.mov_a2b(),
+                Opcode::MovB2A => self.mov_b2a(),
+                Opcode::Jmp => self.jmp();
+                Opcode::
                 Opecode::
                 Opecode::
                 Opecode::
@@ -150,7 +150,7 @@ impl CpuEmulator {
         println!("Port Out: {}", self.port.output());
     }
 
-    
+
     
 
 

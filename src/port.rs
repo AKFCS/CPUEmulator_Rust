@@ -9,7 +9,7 @@ impl Port {
     }
 
     pub fn input(&self) -> u8 {
-        self.inupt
+        self.input
     }
 
     pub fn output(&self) -> u8 {

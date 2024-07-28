@@ -2,7 +2,7 @@ use num_derive::FrmoPrimitive;
 
 #[derive(Debug, PartialEq, FrmoPrimitive)]
 
-pub enum Opecode {
+pub enum Opcode {  
     AddA = 0b0000,
     AddB = 0b0101,
     MovA = 0b0011,
