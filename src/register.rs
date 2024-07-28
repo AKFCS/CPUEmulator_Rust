@@ -11,7 +11,7 @@ impl Default for Register {
         Self {
             register_a: u8::default(),
             register_b: u8::default(),
-            caryy_flag: u8::default(),
+            carry_flag: u8::default(),
             pc: u8::default(),
         }
     }
