@@ -46,7 +46,7 @@ impl CpuEmulator {
                 |Opcode::MovB2A
                 |Opcode::Jmp
                 |Opcode::Jnc
-                |Opcode::OutIm => Ok(opecode, im),
+                |Opcode::OutIm => Ok((opecode, im)),
                 Opcode::InA | Opcode::InB | Opcode::OutB => Ok((opecode,0)),
             }
         }
@@ -61,18 +61,18 @@ impl CpuEmulator {
             let(opecode, im) = self.decode(data)?;
 
             match  opecode {
-                Opecode::MovA => self.mov_a(im),
-                Opecode::MovB => self.mov_b(im),
-                Opecode::AddA => self.add_a(im),
-                Opecode::AddB => self.add_b(im),
-                Opecode::MovA2B => self.mov_a2b(),
-                Opecode::MovB2A => self.mov_b2a(),
-                Opecode::Jmp => self.jmp(im),
-                Opecode::Jnc => self.jnc(im),
-                Opecode::OutIm => self.out_im(im),
-                Opecode::InA => self.in_a(),
-                Opecode::InB => self.in_b(),
-                Opecode::OutB => self.out_im(im),
+                Opcode::MovA => self.mov_a(im),
+                Opcode::MovB => self.mov_b(im),
+                Opcode::AddA => self.add_a(im),
+                Opcode::AddB => self.add_b(im),
+                Opcode::MovA2B => self.mov_a2b(),
+                Opcode::MovB2A => self.mov_b2a(),
+                Opcode::Jmp => self.jmp(im),
+                Opcode::Jnc => self.jnc(im),
+                Opcode::OutIm => self.out_im(im),
+                Opcode::InA => self.in_a(),
+                Opcode::InB => self.in_b(),
+                Opcode::OutB => self.out_im(im),
             };
 
             if opecode != Opecode::Jmp && opecode != Opecode::Jnc {
