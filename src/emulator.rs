@@ -129,7 +129,7 @@ impl CpuEmulator {
     }
 
     fn jnc(&mut self, im:u8) {
-        self.register.carry_flag() == 0 { 
+        if self.register.carry_flag() == 0 { 
             self.register.set_pc(im);
         }
         self.register.set_carry_flag(0);
